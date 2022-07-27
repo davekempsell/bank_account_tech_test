@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
+# used to create an easy to read statement
 class Statement
-  def initialize(account)
-  end
+  def initialize(account); end
 
   def print_statement
-    return "date || credit || debit || balance"
+    'date || credit || debit || balance'
   end
 end
