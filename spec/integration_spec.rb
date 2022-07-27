@@ -13,9 +13,9 @@ RSpec.describe Statement do
     my_account.deposit(2000)
     my_account.withdraw(500)
     my_statement = Statement.new(my_account)
-    expect(my_statement.print_statement).to include "date || credit || debit || balance"
-    expect(my_statement.print_statement).to include "01/01/2000 ||  || 500.00 || 2500.00"
-    expect(my_statement.print_statement).to include "01/01/2000 || 2000.00 ||  || 3000.00"
-    expect(my_statement.print_statement).to include "01/01/2000 || 1000.00 ||  || 1000.00"
+    expect(my_statement.print_statement).to include 'date || credit || debit || balance'
+    expect(my_statement.print_statement).to include '01/01/2000 ||  || 500.00 || 2500.00'
+    expect(my_statement.print_statement).to include '01/01/2000 || 2000.00 ||  || 3000.00'
+    expect(my_statement.print_statement).to include '01/01/2000 || 1000.00 ||  || 1000.00'
   end
 end

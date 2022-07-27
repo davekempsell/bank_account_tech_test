@@ -8,9 +8,9 @@ class Statement
   end
 
   def print_statement
-    statement = ["date || credit || debit || balance"]
+    statement = ['date || credit || debit || balance']
     create_transaction
-    @formatted_transactions.reverse.each { |action| statement.push(action)}
+    @formatted_transactions.reverse.each { |action| statement.push(action) }
     statement.join("\n")
   end
 
@@ -18,10 +18,10 @@ class Statement
 
   def create_transaction
     @transactions.each do |action|
-      date = action["date"].strftime('%d/%m/%Y')
-      credit = action["credit"] > 0 ? format('%.2f', action["credit"]) : ""
-      debit = action["debit"] > 0 ? format('%.2f', action["debit"]) : ""
-      balance = format('%.2f', action["balance"])
+      date = action['date'].strftime('%d/%m/%Y')
+      credit = (action['credit']).positive? ? format('%.2f', action['credit']) : ''
+      debit = (action['debit']).positive? ? format('%.2f', action['debit']) : ''
+      balance = format('%.2f', action['balance'])
       @formatted_transactions.push("#{date} || #{credit} || #{debit} || #{balance}")
     end
   end
