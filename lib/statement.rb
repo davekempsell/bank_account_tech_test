@@ -1,8 +1,7 @@
-class Bank
-  def deposit(amount)
-  end
+# frozen_string_literal: true
 
-  def withdraw(amount)
+class Statement
+  def initialize(account)
   end
 
   def print_statement
