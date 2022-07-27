@@ -8,9 +8,12 @@ class Account
   end
 
   def deposit(amount)
-    transaction = { "debit" => amount}
+    transaction = { "credit" => amount, "debit" => "" }
     @transactions.push(transaction)
   end
 
-  def withdraw(amount); end
+  def withdraw(amount)
+    transaction = { "credit" => "", "debit" => amount }
+    @transactions.push(transaction)
+  end
 end

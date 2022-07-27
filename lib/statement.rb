@@ -4,14 +4,16 @@
 class Statement
   def initialize(account)
     @transactions = account.transactions
+    puts @transactions
   end
 
   def print_statement
-    @transactions.length > 0 ? 
-      deposit = @transactions[0]["debit"] : 
-      deposit = ""
-    
+    if @transactions.length > 0
+      deposit = @transactions[0]["credit"]
+      withdrawal = @transactions[0]["debit"]
+    end
+
       "date || credit || debit || balance\n
-    #{deposit}"
+    #{deposit} || #{withdrawal}"
   end
 end

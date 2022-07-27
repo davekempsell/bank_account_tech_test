@@ -28,4 +28,11 @@ RSpec.describe Statement do
     my_statement = Statement.new(my_account)
     expect(my_statement.print_statement).to include "20"
   end
+
+  it 'includes a withdrawal of 10 to be shown on statement' do
+    my_account = Account.new
+    my_account.withdraw(10)
+    my_statement = Statement.new(my_account)
+    expect(my_statement.print_statement).to include "10"
+  end
 end
