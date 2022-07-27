@@ -35,4 +35,13 @@ RSpec.describe Statement do
     my_statement = Statement.new(my_account)
     expect(my_statement.print_statement).to include "10"
   end
+
+  it 'includes balance at time of transaction on statement' do
+    my_account = Account.new
+    my_account.deposit(10)
+    my_account.deposit(10)
+    my_statement = Statement.new(my_account)
+    expect(my_statement.print_statement).to include "20"
+  end
+
 end

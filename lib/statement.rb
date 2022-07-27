@@ -4,16 +4,22 @@
 class Statement
   def initialize(account)
     @transactions = account.transactions
-    puts @transactions
   end
 
   def print_statement
-    if @transactions.length > 0
-      deposit = @transactions[0]["credit"]
-      withdrawal = @transactions[0]["debit"]
-    end
+    statement = ["date || credit || debit || balance"]
+    transactions = create_transaction
+    transactions.each { |action| statement.push(action)}
+    statement.join("\n")
+  end
 
-      "date || credit || debit || balance\n
-    #{deposit} || #{withdrawal}"
+  private
+
+  def create_transaction
+    actions = []
+    @transactions.each do |action|
+      actions.push("#{action["credit"]} || #{action["debit"]} || #{action["balance"]}")
+    end
+    actions
   end
 end

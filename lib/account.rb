@@ -4,16 +4,19 @@
 class Account
   attr_reader :transactions
   def initialize
+    @balance = 0
     @transactions = []
   end
 
   def deposit(amount)
-    transaction = { "credit" => amount, "debit" => "" }
+    @balance += amount
+    transaction = { "credit" => amount, "debit" => "", "balance" => @balance }
     @transactions.push(transaction)
   end
 
   def withdraw(amount)
-    transaction = { "credit" => "", "debit" => amount }
+    @balance -= amount
+    transaction = { "credit" => "", "debit" => amount, "balance" => @balance }
     @transactions.push(transaction)
   end
 end
