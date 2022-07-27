@@ -19,6 +19,13 @@ RSpec.describe Statement do
     my_account = Account.new
     my_account.deposit(10)
     my_statement = Statement.new(my_account)
-    expect(my_statement.print_statement).to include "10.00"
+    expect(my_statement.print_statement).to include "10"
+  end
+
+  it 'includes a deposit of 20 to be shown on statement' do
+    my_account = Account.new
+    my_account.deposit(20)
+    my_statement = Statement.new(my_account)
+    expect(my_statement.print_statement).to include "20"
   end
 end

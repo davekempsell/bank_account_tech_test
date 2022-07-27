@@ -2,10 +2,16 @@
 
 # used to create an easy to read statement
 class Statement
-  def initialize(account); end
+  def initialize(account)
+    @transactions = account.transactions
+  end
 
   def print_statement
-    "date || credit || debit || balance\n
-    10.00"
+    @transactions.length > 0 ? 
+      deposit = @transactions[0]["debit"] : 
+      deposit = ""
+    
+      "date || credit || debit || balance\n
+    #{deposit}"
   end
 end
