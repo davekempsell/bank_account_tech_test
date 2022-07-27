@@ -54,14 +54,21 @@ date || credit || debit || balance
 
 # Design
 
-After sketching out the basic functions I wanted to the program to be able to do, I have decided on a design that uses one single class to deliver a solution to the problem.
-This makes it easy to follow the code, and makes it easy to keep data in memory when running the program.
+My program will have two classes, an Account class, and a Statement class. This allows it to be possible to pass multiple accounts into the Statement class if so desired, and has a better separation of concerns than including everything in one place.
 
-Class - BankAccount
+
+Class - Account
 - Has a balance variable ( = 0 ) and transactions array (empty) created when initialized.
+  - The transactions array is accessible through an attribute reader so it can be passed into the Statement class.
 
-- Deposit method adds amount to balance, and adds date, deposit amount, and current balance to the transactions array
+- Deposit method adds amount to balance, and adds date, deposit amount, and current balance to the transactions array as a hash.
 
-- Withdrawal method removes amount from balance, and adds date, deposit amount, and current balance to the transactions array.
+- Withdrawal method removes amount from balance, and adds date, deposit amount, and current balance to the transactions array as a hash.
 
-- Print Statement displays the latest statement, with all transactions listed, in reverse chronological order (most recent transaction at top). 
+Class - Statement
+- Is passed an account when created
+- Has a transactions array created when initialized, which is the transactions of the account. It also has a formatted_transactions array where the transactions are pushed after being formatted.
+
+- print_statement method returns the final statement with header, and the transactions from the account in reverse chronological order. It calls the create_transaction private method.
+
+- create_transaction private method takes the transaction hash, and converts it into a formatted string that can be included in the statement.

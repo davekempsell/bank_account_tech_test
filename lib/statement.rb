@@ -10,7 +10,7 @@ class Statement
   def print_statement
     statement = ["date || credit || debit || balance"]
     create_transaction
-    @formatted_transactions.each { |action| statement.push(action)}
+    @formatted_transactions.reverse.each { |action| statement.push(action)}
     statement.join("\n")
   end
 
