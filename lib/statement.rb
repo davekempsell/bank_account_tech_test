@@ -18,7 +18,8 @@ class Statement
   def create_transaction
     actions = []
     @transactions.each do |action|
-      actions.push("#{action["credit"]} || #{action["debit"]} || #{action["balance"]}")
+      date = action["date"].strftime('%d/%m/%Y')
+      actions.push("#{date} || #{action["credit"]} || #{action["debit"]} || #{action["balance"]}")
     end
     actions
   end

@@ -4,6 +4,9 @@ require 'statement'
 require 'account'
 
 RSpec.describe Statement do
+  before(:each) do
+    allow(Time).to receive(:now).and_return Time.new(2000, 1, 1)
+  end
   it 'receives an instance of Account' do
     my_account = Account.new
     expect { Statement.new(my_account) }.to_not raise_error
@@ -44,4 +47,10 @@ RSpec.describe Statement do
     expect(my_statement.print_statement).to include "20"
   end
 
+  it 'includes date of transaction on statement' do
+    my_account = Account.new
+    my_account.deposit(10)
+    my_statement = Statement.new(my_account)
+    expect(my_statement.print_statement).to include "01/01/2000"
+  end
 end
