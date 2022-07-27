@@ -4,4 +4,8 @@ class Bank
 
   def withdraw(amount)
   end
+
+  def print_statement
+    return "date || credit || debit || balance"
+  end
 end
