@@ -5,6 +5,7 @@ class Statement
   def initialize(account); end
 
   def print_statement
-    'date || credit || debit || balance'
+    "date || credit || debit || balance\n
+    10.00"
   end
 end

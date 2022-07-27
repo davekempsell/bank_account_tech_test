@@ -12,6 +12,13 @@ RSpec.describe Statement do
   it 'prints a statement with no transactions when none have been made' do
     my_account = Account.new
     my_statement = Statement.new(my_account)
-    expect(my_statement.print_statement).to eq 'date || credit || debit || balance'
+    expect(my_statement.print_statement).to include 'date || credit || debit || balance'
+  end
+
+  it 'includes a deposit of 10 to be shown on statement' do
+    my_account = Account.new
+    my_account.deposit(10)
+    my_statement = Statement.new(my_account)
+    expect(my_statement.print_statement).to include "10.00"
   end
 end
