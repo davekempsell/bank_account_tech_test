@@ -4,23 +4,25 @@
 class Statement
   def initialize(account)
     @transactions = account.transactions
+    @formatted_transactions = []
   end
 
   def print_statement
     statement = ["date || credit || debit || balance"]
-    transactions = create_transaction
-    transactions.each { |action| statement.push(action)}
+    create_transaction
+    @formatted_transactions.each { |action| statement.push(action)}
     statement.join("\n")
   end
 
   private
 
   def create_transaction
-    actions = []
     @transactions.each do |action|
       date = action["date"].strftime('%d/%m/%Y')
-      actions.push("#{date} || #{action["credit"]} || #{action["debit"]} || #{action["balance"]}")
+      credit = action["credit"] > 0 ? format('%.2f', action["credit"]) : ""
+      debit = action["debit"] > 0 ? format('%.2f', action["debit"]) : ""
+      balance = format('%.2f', action["balance"])
+      @formatted_transactions.push("#{date} || #{credit} || #{debit} || #{balance}")
     end
-    actions
   end
 end

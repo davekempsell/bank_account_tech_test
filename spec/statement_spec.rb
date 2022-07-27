@@ -53,4 +53,14 @@ RSpec.describe Statement do
     my_statement = Statement.new(my_account)
     expect(my_statement.print_statement).to include "01/01/2000"
   end
+
+  it 'displays monetary amounts to two decimal places' do
+    my_account = Account.new
+    my_account.deposit(20)
+    my_account.withdraw(5)
+    my_statement = Statement.new(my_account)
+    expect(my_statement.print_statement).to include "20.00"
+    expect(my_statement.print_statement).to include "5.00"
+    expect(my_statement.print_statement).to include "15.00"
+  end
 end

@@ -10,15 +10,21 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    date = Time.now
-    transaction = { "date" => date, "credit" => amount, "debit" => "", "balance" => @balance }
-    @transactions.push(transaction)
+    @transactions.push ({
+      "date" => Time.now,
+      "credit" => amount,
+      "debit" => 0,
+      "balance" => @balance 
+    })
   end
 
   def withdraw(amount)
     @balance -= amount
-    date = Time.now
-    transaction = { "date" => date, "credit" => "", "debit" => amount, "balance" => @balance }
-    @transactions.push(transaction)
+    @transactions.push ({
+      "date" => Time.now,
+      "credit" => 0,
+      "debit" => amount,
+      "balance" => @balance
+    })
   end
 end
